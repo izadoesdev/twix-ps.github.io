@@ -9,8 +9,12 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Profile Button at the Top Left -->
-    <button onclick="goToProfile()" class="profile-button">View my personal website</button>
+    <div class="profile-wrapper">
+        <div class="profile-container" onclick="goToProfile()">
+            <img src="secondary/resources/avatar-icon.webp" alt="Profile Image" class="profile-image">
+            <span class="profile-text">View my personal website</span>
+        </div>
+    </div>
 
     <div class="wrapper">
         <!-- Information Div -->
@@ -20,13 +24,12 @@
             <input type="text" placeholder="Username" id="user">
             <input type="password" placeholder="Password" id="pass">
             <button onclick="handleLogin()">Log in</button>
-            
+
             <!-- Blue text links for Register and Forgot Password -->
             <a href="register.html" class="blue-link">Register</a>
             <a href="recovery.html" class="blue-link">Forgot Password</a>
         </div>
     </div>
-    
     <script src="main.js" async defer></script>
 </body>
 </html>
