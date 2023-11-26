@@ -1,0 +1,252 @@
+:root {
+    --text: #e3efe3;
+    --background: #101410;
+    --primary: #6a816a;
+    --secondary: #1e241e;
+    --accent: #7c937b;
+    background-color: var(--background);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Graphik', sans-serif;
+}
+
+.primary-button {
+    padding: 1em 2em;
+    background-color: var(--primary);
+    border-radius: 6px;
+    display: inline-block;
+    cursor: pointer;
+    transition: transform ease 0.2s;
+    color: var(--background);
+    font-size: 18px;
+    z-index: 2;
+    white-space: nowrap;
+
+}
+
+.primary-text {
+    font-size: 4vh;
+    color: var(--text);
+}
+
+.main-container {
+    position: relative;
+    display: grid;
+    place-items: center;
+    height: 80vh;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.top-container {
+    position: relative;
+    margin-top: 20%;
+    width: auto;
+    height: 260px;
+    border-radius: 12px;
+    background-color: var(--secondary);
+    transform: translateY(0);
+    transition: transform 0.5s;
+
+}
+
+.avatarContainer {
+    position: absolute;
+    text-align: center;
+}
+
+.avatar {
+    height: 256px;
+    width: 256px;
+    position: relative;
+    border-radius: 50%;
+    border-style: double;
+    border-color: var(--secondary);
+    border-width: 18px;
+    top: -138px
+}
+
+.avatarText {
+    position: relative;
+    color: var(--text);
+    font-size: 20px;
+    text-align: center;
+    top: -172px;
+}
+
+.secondaryText {
+    position: relative;
+    color: gray;
+    font-size: 9px;
+    text-align: center;
+    top: -185px;
+}
+
+.socialsGrid {
+    position: relative;
+    top: -175px;
+    justify-content: center;
+    display: grid;
+    gap: 10px;
+    grid-auto-flow: column;
+}
+
+.social {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.social:hover {
+    transform: scale(1.3);
+}
+
+.location {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 275px;
+    width: 370px;
+    left: -35px;
+}
+
+.flag {
+    width: 32px;
+    height: 32px;
+    margin-left: -45px;
+    margin-top: 0px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.flag:hover {
+   transform: scale(1.2);
+}
+
+.icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border-width: 2px;
+    border-color: var(--accent);
+    border-style: solid;
+    background-color: var(--primary);
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: auto;
+    background-color: var(--accent);
+    color: #fff;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    right: 100%;
+    transform: translateY(-100%);
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.video-container {
+    width: 100%;
+    height: 100%;
+}
+
+.mid-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+    width: 60%;
+    height: 1200px;
+    border-radius: 12px;
+    background-color: var(--secondary);
+}
+
+.music {
+    position: relative;
+    display: grid;
+    grid-auto-flow: column;
+    gap: 5px;
+    margin-top: 10%;
+    width: auto;
+    height: 100px;
+    border-radius: 8px;
+    background-color: var(--secondary);
+    transform: translateY(0);
+    transition: transform 0.5s;
+}
+
+.left-arrow {
+    margin-top: -10%;
+    width: 32px;
+    position: relative;
+    justify-self: center;
+    top: 12px;
+    left: 10px;
+    height: 32px;
+    transition: transform 0.3s ease;
+}
+
+.right-arrow {
+    width: 32px;
+    position: relative;
+    top: 8px;
+    left: 6px;
+    height: 32px;
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}
+
+.left-arrow:hover {
+    transform: scale(1.3) rotate(180deg);
+}
+
+.right-arrow:hover {
+    transform: scale(1.3);
+}
+
+.vert-bar {
+    background-color: var(--primary);
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    align-content: center;
+    border-radius: 20%;
+    margin-top: 20px;
+}
+
+.psSupporter {
+    height: 32px;
+    width: 350px;
+    border-radius: 6px;
+    transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.psSupporter:hover {
+    transform: scale(1.5);
+}
+
+@media (max-width: 600px) {
+    .main-container {
+      width: 100%;
+    }
+  }

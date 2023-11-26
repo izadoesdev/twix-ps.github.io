@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="main-container">
+            <nav class="top-container" id="top-container">
+                <div class="location">
+                    <a href="https://www.youtube.com/watch?v=F9czNtvvgvA" target="_blank"><img class="flag" src="resources/ANA DAMMI FALASTEENII.webp"></a>
+                    <img class="psSupporter" src="https://media.discordapp.net/attachments/274654333918904330/1133442184197197964/unknown.png?width=1440&height=121">
+                </div>
+                <div class="avatar-container">
+                    <img class="avatar" src="resources/avatar.png">
+                    <p class="avatarText">Iza</p>
+                    <h6 class="secondaryText">Hobbies: Programming, Web Design, Game Development</h6>
+                    <div class="socialsGrid">
+                        <a href="https://discordapp.com/users/296658677203468288" target="_blank"><img class="social" src="resources/discord.webp" id="discord"></a>
+                        <a href="https://hyteq.itch.io/" target="_blank"><img class="social itchio" src="resources/itchio.png" id="itchio"></a>
+                        <a href="https://steamcommunity.com/id/twixBars/" target="_blank"><img class="social steam" src="resources/steam.png" id="steam"></a>
+                        <a href="https://open.spotify.com/user/mhv8ia21o8fvtkec63xoiswiq?si=51068897f5574409" target="_blank"><img class="social spotify" src="resources/spotify.webp" id="spotify"></a>
+                    </div>
+                </div>
+            </nav>
+            <div class="music" id="center">
+                <div class="vert-bar tooltip">
+                    <span class="tooltiptext">
+                        Play this song
+                    </span>
+                    <img class="left-arrow" src="resources/arrow.png" loading="lazy" onclick="playSong()"></button>
+                </div>
+                <div class="center">
+                    <audio id="music" controls style="margin-top: 25px">
+                        <source id="music-src" src="resources/music/bg.mp3">
+                    </audio>
+                    </div>
+            <div class="vert-bar tooltip">
+                <span class="tooltiptext">
+                    Also play this song
+                </span>
+                    <img class="right-arrow" src="resources/arrow.png" onclick="playSong()"></button>
+            </div>
+        </div>
+        <div class="mid-container">
+            <nav class="intro">
+                <h1 class="primary-text" style="font-size: large;">My Passions:</h1>
+                <h2 class="primary-text" style="font-size: medium;">G</h2>
+
+            </nav>
+        </div>
+    </div>
+</div>
+        
+        <script src="js/script.js" async defer></script>
+    </body>
+</html>

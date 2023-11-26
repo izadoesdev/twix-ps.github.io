@@ -1,0 +1,107 @@
+:root {
+    --background-color: rgba(43, 109, 154, 0.4);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("assets/bg.jpg");
+    background-size: 90%;
+    background-color: #2980b9;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background: var(--background-color);
+    padding: 40px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border-radius: 15px;
+    backdrop-filter: blur(3px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input, button {
+    margin: 10px 0;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: #e4dbdb;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    border-color: #e4dbdb;
+    border-style: solid;
+    background: var(--background-color);
+    backdrop-filter: blur(15px);
+    border-width: 0.1px;
+}
+
+button {
+    background-color: var(--background-color);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 15px;
+    width: 80%;
+    transition: transform 0.1s, background-color 0.1s, box-shadow 0.1s;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.8);
+}
+
+button:hover {
+    transform: scale(1.1);
+    background-color: #2980b9;
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.8);
+}
+
+.blue-link {
+    color: #e6ebee; /* Blue color */
+    text-decoration: none;
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+.blue-link:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+.info-message {
+    display: none;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #f44336;
+    color: white;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 600px) {
+    /* Add styles for small screens here */
+    .wrapper {
+        padding: 20px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    input, button {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    button {
+        width: 100%;
+    }
+}

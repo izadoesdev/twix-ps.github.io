@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Your Title</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Profile Button at the Top Left -->
+    <button onclick="goToProfile()" class="profile-button">View my personal website</button>
+
+    <div class="wrapper">
+        <!-- Information Div -->
+        <div id="info-message" class="info-message"></div>
+
+        <div class="fields">
+            <input type="text" placeholder="Username" id="user">
+            <input type="password" placeholder="Password" id="pass">
+            <button onclick="handleLogin()">Log in</button>
+            
+            <!-- Blue text links for Register and Forgot Password -->
+            <a href="register.html" class="blue-link">Register</a>
+            <a href="recovery.html" class="blue-link">Forgot Password</a>
+        </div>
+    </div>
+    
+    <script src="main.js" async defer></script>
+</body>
+</html>
