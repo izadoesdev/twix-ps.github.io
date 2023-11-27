@@ -16,13 +16,14 @@ function handleLogin() {
         },
         body: JSON.stringify({ username, password }),
     })
-    .then(response => response.ok ? response.json() : Promise.reject(`Login failed with status: ${response.status}`))
+    .then(response => response.json())
     .then(data => {
-        if (data && data.success) {
+        if (data.success) {
             displayInfoMessage('Login successful, Logging in!', 'success');
-            setTimeout(() => window.location.href = "main.html", 1000);
+            localStorage.setItem('token', data.token); // Store the token in local storage
+            setTimeout(() => window.location.href = "handler/main.html", 1000);
         } else {
-            displayInfoMessage(data && data.message ? data.message : 'Login failed', 'error');
+            displayInfoMessage(data.message ? data.message : 'Login failed', 'error');
         }
     })
     .catch(error => {
@@ -30,6 +31,7 @@ function handleLogin() {
         displayInfoMessage('Login failed. Please try again later.', 'error');
     });
 }
+
 
 function displayInfoMessage(message, type) {
     const infoMessageDiv = document.getElementById("info-message");
@@ -40,14 +42,13 @@ function displayInfoMessage(message, type) {
 }
 
 function goToProfile() {
-    window.location.href = "secondary/index.html";
+    window.location.href = "secondary/main.html";
 }
 
 function checkAndLoginWithToken() {
     const storedToken = localStorage.getItem('token');
 
     if (storedToken) {
-        // Call the server to verify the token
         const apiUrl = 'https://webapi-b17z.onrender.com/api/verify';
 
         fetch(apiUrl, {
@@ -57,20 +58,14 @@ function checkAndLoginWithToken() {
             },
             body: JSON.stringify({ token: storedToken }),
         })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error(`Token verification failed with status: ${response.status}`);
-            }
-        })
+        .then(response => response.json())
         .then(data => {
-            if (data && data.success) {
-                // Token is valid, perform login or redirect to main page
+            if (data.success) {
                 displayInfoMessage(`Welcome back, ${data.username}!`, 'success');
-                setTimeout(() => window.location.href = "main.html", 1000);
+                setTimeout(() => window.location.href = "handler/main.html", 1000);
             } else {
-                // Token is invalid or expired, do nothing or handle accordingly
+                // Token is invalid or expired, handle accordingly
+                localStorage.removeItem('token'); // Remove invalid token from local storage
             }
         })
         .catch(error => {
@@ -79,4 +74,5 @@ function checkAndLoginWithToken() {
         });
     }
 }
+
 document.addEventListener('DOMContentLoaded', checkAndLoginWithToken);

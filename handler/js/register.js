@@ -19,7 +19,6 @@ function passwordCheck(password) {
 }
 
 function handleRegister() {
-    // Get the values from the input fields
     let username = document.getElementById("user").value;
     let password = document.getElementById("pass").value;
     let email = document.getElementById("email").value;
@@ -29,20 +28,15 @@ function handleRegister() {
         return;
     }
 
-    // Use the passwordCheck function to validate the password
     const passwordValidation = passwordCheck(password);
 
-    // Check if the password is valid
     if (!passwordValidation.valid) {
-        // Display the password validation error
         displayInfoMessage(passwordValidation.error, 'error');
         return;
     }
-    
-    // Construct the API URL
+
     let apiUrl = 'https://webapi-b17z.onrender.com/api/register';
 
-    // Make a fetch request to the API
     fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -55,33 +49,30 @@ function handleRegister() {
         }),
     })
     .then(response => {
-        // Check if the response status is OK (201)
         if (response.ok) {
             return response.json();
         } else {
-            // Handle non-OK responses
             throw new Error(`Registration failed with status: ${response.status}`);
         }
     })
     .then(data => {
-        // Check the response data for success or failure
         if (data && data.message) {
             displayInfoMessage(data.message, 'success');
-            // Redirect to the login page after a short delay
             setTimeout(() => {
-                window.location.href = "index.html";
-            }, 1000); // 1000 milliseconds (1 second)
+                window.location.href = "handler/main.html";
+            }, 1000);
+        } else if (data && data.error) {
+            displayInfoMessage(`Registration failed. ${data.error}`, 'error');
         } else {
-            // Display a generic message for unexpected response
             displayInfoMessage('Registration failed. Please try again later.', 'error');
         }
     })
     .catch(error => {
-        // Handle fetch errors
         console.error('Error:', error.message);
-        displayInfoMessage('Registration failed. Please try again later.', 'error');
+        displayInfoMessage(`Registration failed. ${error.message}`, 'error');
     });
 }
+
 
 function displayInfoMessage(message, type) {
     // Update the content and display the information div
