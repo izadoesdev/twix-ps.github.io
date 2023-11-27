@@ -1,15 +1,44 @@
+function passwordCheck(password) {
+    if (password.length < 7 || password.length > 32) {
+        return { valid: false, error: 'Password must be between 7 and 32 characters.' };
+    }
+
+    if (!/[A-Z]/.test(password)) {
+        return { valid: false, error: 'Password must contain at least one uppercase letter.' };
+    }
+
+    if (!/\d/.test(password)) {
+        return { valid: false, error: 'Password must contain at least one number.' };
+    }
+
+    if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password)) {
+        return { valid: false, error: 'Password must contain at least one special character.' };
+    }
+
+    return { valid: true };
+}
+
 function handleRegister() {
     // Get the values from the input fields
     let username = document.getElementById("user").value;
     let password = document.getElementById("pass").value;
     let email = document.getElementById("email").value;
 
-    // Check if username, password, and email are not empty
     if (!username || !password || !email) {
         displayInfoMessage("Please enter all required fields", 'error');
         return;
     }
 
+    // Use the passwordCheck function to validate the password
+    const passwordValidation = passwordCheck(password);
+
+    // Check if the password is valid
+    if (!passwordValidation.valid) {
+        // Display the password validation error
+        displayInfoMessage(passwordValidation.error, 'error');
+        return;
+    }
+    
     // Construct the API URL
     let apiUrl = 'https://webapi-b17z.onrender.com/api/register';
 
