@@ -20,7 +20,7 @@ function handleLogin() {
     .then(data => {
         if (data && data.success) {
             displayInfoMessage('Login successful, Logging in!', 'success');
-            setTimeout(() => window.location.href = "handler/main.html", 1000);
+            window.location.href = "handler/main.html";
         } else {
             displayInfoMessage(data && data.message ? data.message : 'Login failed', 'error');
         }
@@ -54,7 +54,7 @@ function checkAndLoginWithToken() {
         .then(data => {
             if (data && data.success) {
                 displayInfoMessage(`Welcome back, ${data.username}!`, 'success');
-                setTimeout(() => window.location.href = "handler/main.html", 1000);
+                window.location.href = "handler/main.html"
             } else {
                 localStorage.removeItem('token');
             }

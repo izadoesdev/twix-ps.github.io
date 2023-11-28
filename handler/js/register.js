@@ -35,6 +35,10 @@ function handleRegister() {
         return;
     }
 
+    // Display loading indicator
+    displayInfoMessage("Registering... Please wait.", 'info');
+    document.body.style.cursor = 'wait';
+
     let apiUrl = 'https://webapi-b17z.onrender.com/api/register';
 
     fetch(apiUrl, {
@@ -57,17 +61,23 @@ function handleRegister() {
     })
     .then(data => {
         if (data && data.message) {
+            // Registration successful
             displayInfoMessage(data.message, 'success');
             setTimeout(() => {
-                window.location.href = "handler/main.html";
+                window.location.href = "main.html";
             }, 1000);
         } else if (data && data.error) {
+            // Registration failed
             displayInfoMessage(`Registration failed. ${data.error}`, 'error');
+            document.body.style.cursor = 'pointer';
         } else {
+            // Unexpected response
             displayInfoMessage('Registration failed. Please try again later.', 'error');
+            document.body.style.cursor = 'pointer';
         }
     })
     .catch(error => {
+        // Handle fetch errors
         console.error('Error:', error.message);
         displayInfoMessage(`Registration failed. ${error.message}`, 'error');
     });
