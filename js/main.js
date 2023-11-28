@@ -16,33 +16,19 @@ function handleLogin() {
         },
         body: JSON.stringify({ username, password }),
     })
-    .then(response => response.json())
+    .then(response => response.ok ? response.json() : Promise.reject(`Login failed with status: ${response.status}`))
     .then(data => {
-        if (data.success) {
+        if (data && data.success) {
             displayInfoMessage('Login successful, Logging in!', 'success');
-            localStorage.setItem('token', data.token); // Store the token in local storage
             setTimeout(() => window.location.href = "handler/main.html", 1000);
         } else {
-            displayInfoMessage(data.message ? data.message : 'Login failed', 'error');
+            displayInfoMessage(data && data.message ? data.message : 'Login failed', 'error');
         }
     })
     .catch(error => {
         console.error('Error:', error.message);
         displayInfoMessage('Login failed. Please try again later.', 'error');
     });
-}
-
-
-function displayInfoMessage(message, type) {
-    const infoMessageDiv = document.getElementById("info-message");
-    infoMessageDiv.textContent = message;
-    infoMessageDiv.style.backgroundColor = type === 'error' ? '#f44336' : (type === 'success' ? '#4CAF50' : '');
-
-    infoMessageDiv.style.display = 'block';
-}
-
-function goToProfile() {
-    window.location.href = "secondary/main.html";
 }
 
 function checkAndLoginWithToken() {
@@ -58,21 +44,36 @@ function checkAndLoginWithToken() {
             },
             body: JSON.stringify({ token: storedToken }),
         })
-        .then(response => response.json())
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error(`Token verification failed with status: ${response.status}`);
+            }
+        })
         .then(data => {
-            if (data.success) {
+            if (data && data.success) {
                 displayInfoMessage(`Welcome back, ${data.username}!`, 'success');
                 setTimeout(() => window.location.href = "handler/main.html", 1000);
             } else {
-                // Token is invalid or expired, handle accordingly
-                localStorage.removeItem('token'); // Remove invalid token from local storage
+                localStorage.removeItem('token');
             }
         })
         .catch(error => {
             console.error('Token verification failed:', error.message);
-            // Handle verification error
         });
     }
 }
 
 document.addEventListener('DOMContentLoaded', checkAndLoginWithToken);
+
+function displayInfoMessage(message, type) {
+    const infoMessageDiv = document.getElementById("info-message");
+    infoMessageDiv.textContent = message;
+    infoMessageDiv.style.backgroundColor = type === 'error' ? '#f44336' : (type === 'success' ? '#4CAF50' : '');
+    infoMessageDiv.style.display = 'block';
+}
+
+function goToProfile() {
+    window.location.href = "secondary/main.html";
+}
