@@ -1,4 +1,15 @@
+let isLoginButtonClickable = true;
+
 function handleLogin() {
+    if (!isLoginButtonClickable) {
+        return; 
+    }
+    
+    isLoginButtonClickable = false;
+    setTimeout(() => {
+        isLoginButtonClickable = true;
+    }, 2000);
+
     const username = document.getElementById("user").value;
     const password = document.getElementById("pass").value;
 
@@ -30,6 +41,7 @@ function handleLogin() {
         displayInfoMessage('Login failed. Please try again later.', 'error');
     });
 }
+
 
 function checkAndLoginWithToken() {
     const storedToken = localStorage.getItem('token');

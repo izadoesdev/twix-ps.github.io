@@ -18,24 +18,39 @@ function passwordCheck(password) {
     return { valid: true };
 }
 
+const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const userRegex = /^[A-Za-z0-9]*$/;
+const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{7,32}$/;
+
 function handleRegister() {
-    let username = document.getElementById("user").value;
-    let password = document.getElementById("pass").value;
-    let email = document.getElementById("email").value;
+    const username = document.getElementById("user").value;
+    const password = document.getElementById("pass").value;
+    const email = document.getElementById("email").value;
 
     if (!username || !password || !email) {
-        displayInfoMessage("Please enter all required fields", 'error');
+        displayInfoMessage('Please enter all required fields', 'error');
         return;
     }
 
-    const passwordValidation = passwordCheck(password);
-
-    if (!passwordValidation.valid) {
-        displayInfoMessage(passwordValidation.error, 'error');
+    if (username.length < 3 || username.length > 24) {
+        displayInfoMessage('Username must be between 3-24 characters', 'error');
         return;
     }
 
-    // Display loading indicator
+    if (!username.match(userRegex)) {
+        displayInfoMessage('Username cannot have spaces or special characters!', 'error');
+        return;
+    }
+    
+    if (!email.match(emailRegex)) {
+        displayInfoMessage('Invalid email address', 'error');
+        return;
+    }
+
+    if (!password.match(passwordRegex)) {
+        displayInfoMessage('Password must be 7-32 characters, have one Uppercase, one number and one Special Character', 'error')
+        return;
+    }
     displayInfoMessage("Registering... Please wait.", 'info');
     document.body.style.cursor = 'wait';
 
@@ -82,7 +97,6 @@ function handleRegister() {
         displayInfoMessage(`Registration failed. ${error.message}`, 'error');
     });
 }
-
 
 function displayInfoMessage(message, type) {
     // Update the content and display the information div

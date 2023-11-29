@@ -15,18 +15,24 @@ body {
 
 .wrapper {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
     top: 50%;
     left: 50%;
+    width: 25%;
     transform: translate(-50%, -50%);
     text-align: center;
     background: var(--background-color);
-    padding: 40px;
+    padding: 12px;
     padding-top: 50px;
     padding-bottom: 50px;
     border-radius: 15px;
     backdrop-filter: blur(3px);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
+
 
 .fields {
     display: flex;
@@ -86,6 +92,9 @@ button:hover {
     background-color: #f44336;
     color: white;
     border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+    transition: opacity 0.3s ease; /* Smooth transition effect */
+    max-width: 300px; /* Set a maximum width to prevent text from expanding the wrapper */
 }
 
 .profile-wrapper {
